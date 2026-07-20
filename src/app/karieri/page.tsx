@@ -3,10 +3,35 @@ import { Compass, FileEdit, MessagesSquare } from "lucide-react";
 import InternalPageHero from "@/components/shared/InternalPageHero";
 import SectionHeader from "@/components/shared/SectionHeader";
 import FeatureCard from "@/components/shared/FeatureCard";
+import QuoteSlider from "@/components/shared/QuoteSlider";
+import VideoSection from "@/components/shared/VideoSection";
+import Gallery from "@/components/shared/Gallery";
+import FAQAccordion from "@/components/shared/FAQAccordion";
 import CTASection from "@/components/shared/CTASection";
 import KarieriBrowser from "@/components/karieri/KarieriBrowser";
 import Reveal from "@/components/shared/Reveal";
 import { jobs } from "@/data/jobs";
+import { careerFaqs } from "@/data/faqs";
+
+const employerStories = [
+  {
+    quote: "БАПЗГ ни помогна да намерим отдадени специалисти за спешното ни отделение само за седмици.",
+    author: "УМБАЛ „Св. Иван Рилски“",
+    role: "Отдел човешки ресурси",
+  },
+  {
+    quote: "Платформата за кариери е лесна за ползване и достига точната аудитория от здравни специалисти.",
+    author: "МБАЛ „Пловдив“ АД",
+    role: "Управител",
+  },
+];
+
+const galleryImages = [
+  { src: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=900&auto=format&fit=crop", alt: "Работна среда" },
+  { src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=900&auto=format&fit=crop", alt: "Обучение на работното място" },
+  { src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=900&auto=format&fit=crop", alt: "Екипна работа" },
+  { src: "https://images.unsplash.com/photo-1587556930799-8dca6fad6d41?q=80&w=900&auto=format&fit=crop", alt: "Практическо обучение" },
+];
 
 export const metadata: Metadata = {
   title: "Кариери — БАПЗГ",
@@ -55,6 +80,41 @@ export default function KarieriPage() {
           <FeatureCard icon={<FileEdit size={22} strokeWidth={1.75} />} title="Изгответе силно CV" description="Подчертайте квалификация, сертификати и практически опит." />
           <FeatureCard icon={<MessagesSquare size={22} strokeWidth={1.75} />} title="Подгответе се за интервю" description="Прегледайте типични въпроси за здравни специалисти." />
           <FeatureCard icon={<Compass size={22} strokeWidth={1.75} />} title="Планирайте развитието си" description="Използвайте обученията на БАПЗГ за нови компетенции." />
+        </div>
+      </section>
+
+      <section className="bg-wine-deep py-16">
+        <div className="mx-auto max-w-[var(--container-width)] px-6">
+          <SectionHeader eyebrow="Отзиви" title="Истории на работодатели" align="center" />
+          <div className="mt-10 rounded-[var(--radius-lg)] bg-white/[0.04] py-10">
+            <QuoteSlider quotes={employerStories} />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+        <SectionHeader eyebrow="Видео" title="Кариера в здравните грижи" align="center" />
+        <div className="mx-auto mt-10 max-w-3xl">
+          <VideoSection
+            poster="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1200&auto=format&fit=crop"
+            title="Кариера в здравните грижи"
+          />
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-[var(--container-width)] px-6">
+          <SectionHeader eyebrow="Галерия" title="Работна среда" align="center" />
+          <div className="mt-10">
+            <Gallery images={galleryImages} layout="grid" />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+        <SectionHeader eyebrow="Въпроси" title="Често задавани въпроси" />
+        <div className="mt-8 max-w-3xl">
+          <FAQAccordion items={careerFaqs} />
         </div>
       </section>
 

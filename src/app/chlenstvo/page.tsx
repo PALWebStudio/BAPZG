@@ -6,9 +6,12 @@ import FeatureCard from "@/components/shared/FeatureCard";
 import InfoCard from "@/components/shared/InfoCard";
 import MembershipPlanCard from "@/components/shared/MembershipPlanCard";
 import FAQAccordion from "@/components/shared/FAQAccordion";
+import QuoteBlock from "@/components/shared/QuoteBlock";
+import RelatedArticles from "@/components/shared/RelatedArticles";
 import CTASection from "@/components/shared/CTASection";
 import Reveal from "@/components/shared/Reveal";
 import { membershipFaqs } from "@/data/faqs";
+import { newsArticles } from "@/data/news";
 
 export const metadata: Metadata = {
   title: "Членство — БАПЗГ",
@@ -61,6 +64,14 @@ export default function ChlenstvoPage() {
             />
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+        <QuoteBlock
+          quote="Членството в БАПЗГ ми даде достъп до обучения и общност от колеги, каквато не бих намерила другаде."
+          author="Медицинска сестра, член на БАПЗГ"
+          role="Регионална колегия София"
+        />
       </section>
 
       <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
@@ -138,6 +149,10 @@ export default function ChlenstvoPage() {
             <FAQAccordion items={membershipFaqs} />
           </div>
         </div>
+      </section>
+
+      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+        <RelatedArticles articles={newsArticles.slice(0, 3)} title="Свързано за членовете" />
       </section>
 
       <CTASection

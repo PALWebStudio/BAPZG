@@ -200,6 +200,7 @@ export const footerColumns = {
     { label: "Членство", href: "/chlenstvo" },
     { label: "Кариери", href: "/karieri" },
     { label: "Обучения", href: "/obucheniya" },
+    { label: "Събития", href: "/sabitiya" },
     { label: "Библиотека", href: "/biblioteka" },
     { label: "Новини", href: "/novini" },
     { label: "Контакти", href: "/kontakti" },

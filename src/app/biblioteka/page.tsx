@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Video } from "lucide-react";
 import InternalPageHero from "@/components/shared/InternalPageHero";
 import SectionHeader from "@/components/shared/SectionHeader";
 import DocumentCard from "@/components/shared/DocumentCard";
+import VideoSection from "@/components/shared/VideoSection";
 import CTASection from "@/components/shared/CTASection";
 import LibraryBrowser from "@/components/biblioteka/LibraryBrowser";
-import Reveal from "@/components/shared/Reveal";
 import { documents } from "@/data/documents";
 
 export const metadata: Metadata = {
@@ -14,6 +13,7 @@ export const metadata: Metadata = {
 };
 
 const mostDownloaded = documents.filter((d) => d.downloadable).slice(0, 3);
+const guidelines = documents.filter((d) => d.category === "Стандарти" || d.category === "Добри практики");
 
 export default function BibliotekaPage() {
   return (
@@ -48,11 +48,20 @@ export default function BibliotekaPage() {
 
       <section className="bg-white py-16">
         <div className="mx-auto max-w-[var(--container-width)] px-6">
-          <SectionHeader eyebrow="Мултимедия" title="Видео ресурси" />
-          <Reveal className="mt-8 flex flex-col items-center gap-3 rounded-[var(--radius-md)] border border-dashed border-black/[0.12] py-16 text-center">
-            <Video size={28} className="text-muted/40" aria-hidden="true" />
-            <p className="text-[14px] text-muted/60">Видео ресурсите предстои да бъдат добавени.</p>
-          </Reveal>
+          <SectionHeader eyebrow="Насоки" title="Стандарти и добри практики" description="Ключови документи за качествена и безопасна практика." />
+          <div className="mt-8 space-y-4">
+            {guidelines.map((doc) => <DocumentCard key={doc.id} doc={doc} />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+        <SectionHeader eyebrow="Мултимедия" title="Видео ресурси" align="center" />
+        <div className="mx-auto mt-10 max-w-3xl">
+          <VideoSection
+            poster="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1200&auto=format&fit=crop"
+            title="Как да ползвате библиотеката на БАПЗГ"
+          />
         </div>
       </section>
 

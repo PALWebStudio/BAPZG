@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import InternalPageHero from "@/components/shared/InternalPageHero";
 import SectionHeader from "@/components/shared/SectionHeader";
 import ContactCard from "@/components/shared/ContactCard";
-import RegionCard from "@/components/shared/RegionCard";
+import RegionalCards from "@/components/shared/RegionalCards";
 import FAQAccordion from "@/components/shared/FAQAccordion";
 import ContactForm from "@/components/kontakti/ContactForm";
 import Reveal from "@/components/shared/Reveal";
@@ -80,13 +80,14 @@ export default function KontaktiPage() {
           </div>
           <div>
             <SectionHeader eyebrow="Локация" title="Централен офис" />
-            <Reveal
-              direction="right"
-              className="mt-8 flex h-64 flex-col items-center justify-center gap-2 rounded-[var(--radius-md)] border border-dashed border-black/[0.15] bg-cream text-center"
-            >
-              <MapPin size={26} className="text-burgundy" />
-              <p className="text-[14px] font-medium text-ink">ул. „Цар Калоян“ 1, София</p>
-              <p className="text-[12.5px] text-muted/50">Интерактивна карта предстои да бъде добавена</p>
+            <Reveal direction="right" className="mt-8 overflow-hidden rounded-[var(--radius-md)] border border-black/[0.06] shadow-[var(--shadow-card)]">
+              <iframe
+                title="Карта — централен офис на БАПЗГ"
+                src="https://www.google.com/maps?q=ул.+Цар+Калоян+1,+София,+България&output=embed"
+                className="h-64 w-full grayscale-[15%]"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </Reveal>
           </div>
         </div>
@@ -95,8 +96,8 @@ export default function KontaktiPage() {
       <section className="bg-white py-16">
         <div className="mx-auto max-w-[var(--container-width)] px-6">
           <SectionHeader eyebrow="Регионална мрежа" title="Регионални колегии" />
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {regions.map((region) => <RegionCard key={region.city} {...region} />)}
+          <div className="mt-8">
+            <RegionalCards regions={regions} />
           </div>
         </div>
       </section>

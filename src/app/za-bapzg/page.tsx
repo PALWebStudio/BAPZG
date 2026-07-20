@@ -4,9 +4,13 @@ import InternalPageHero from "@/components/shared/InternalPageHero";
 import SectionIntro from "@/components/shared/SectionIntro";
 import SectionHeader from "@/components/shared/SectionHeader";
 import FeatureCard from "@/components/shared/FeatureCard";
+import QuoteBlock from "@/components/shared/QuoteBlock";
 import Timeline from "@/components/shared/Timeline";
-import LeadershipCard from "@/components/shared/LeadershipCard";
-import RegionCard from "@/components/shared/RegionCard";
+import LeadershipCards from "@/components/shared/LeadershipCards";
+import RegionalCards from "@/components/shared/RegionalCards";
+import PartnersGrid from "@/components/shared/PartnersGrid";
+import Gallery from "@/components/shared/Gallery";
+import VideoSection from "@/components/shared/VideoSection";
 import CTASection from "@/components/shared/CTASection";
 import Reveal from "@/components/shared/Reveal";
 import { leadership } from "@/data/leadership";
@@ -40,6 +44,14 @@ const timelineItems = [
     title: "Дигитална трансформация",
     description: "БАПЗГ инвестира в дигитални услуги и продължаващо обучение за своите членове.",
   },
+];
+
+const galleryImages = [
+  { src: "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=900&auto=format&fit=crop", alt: "Екип на БАПЗГ" },
+  { src: "https://images.unsplash.com/photo-1587556930799-8dca6fad6d41?q=80&w=900&auto=format&fit=crop", alt: "Национален конгрес" },
+  { src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=900&auto=format&fit=crop", alt: "Регионална колегия" },
+  { src: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=900&auto=format&fit=crop", alt: "Работна среща" },
+  { src: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?q=80&w=900&auto=format&fit=crop", alt: "Дискусионен панел" },
 ];
 
 export default function ZaBapzgPage() {
@@ -93,37 +105,43 @@ export default function ZaBapzgPage() {
       </section>
 
       <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="История" title="Основни етапи в развитието на асоциацията" />
-        <div className="mt-10 max-w-3xl">
-          <Timeline items={timelineItems} />
-        </div>
+        <QuoteBlock
+          quote="Заедно можем повече. Заедно сме бъдещето на здравните грижи в България."
+          author="БАПЗГ"
+          role="Мото на асоциацията"
+        />
       </section>
 
       <section className="bg-white py-16">
         <div className="mx-auto max-w-[var(--container-width)] px-6">
-          <SectionHeader
-            eyebrow="Ръководство"
-            title="Управителен съвет"
-            description="Примерни данни — имената ще бъдат заменени с официалния състав на ръководството."
-          />
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {leadership.map((member) => (
-              <LeadershipCard key={member.name + member.role} {...member} />
-            ))}
+          <SectionHeader eyebrow="История" title="Основни етапи в развитието на асоциацията" />
+          <div className="mt-10 max-w-3xl">
+            <Timeline items={timelineItems} />
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
         <SectionHeader
-          eyebrow="Структура"
-          title="Регионална структура"
-          description="БАПЗГ работи чрез мрежа от регионални колегии в цялата страна."
+          eyebrow="Ръководство"
+          title="Управителен съвет"
+          description="Примерни данни — имената ще бъдат заменени с официалния състав на ръководството."
         />
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {regions.slice(0, 8).map((region) => (
-            <RegionCard key={region.city} {...region} />
-          ))}
+        <div className="mt-10">
+          <LeadershipCards members={leadership} />
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-[var(--container-width)] px-6">
+          <SectionHeader
+            eyebrow="Структура"
+            title="Регионална структура"
+            description="БАПЗГ работи чрез мрежа от регионални колегии в цялата страна."
+          />
+          <div className="mt-10">
+            <RegionalCards regions={regions.slice(0, 8)} />
+          </div>
         </div>
       </section>
 
@@ -137,19 +155,27 @@ export default function ZaBapzgPage() {
               Член на международни организации
             </h2>
           </Reveal>
-          <div className="mt-10 flex flex-wrap justify-center gap-x-14 gap-y-6">
-            {partners.map((partner, i) => (
-              <Reveal key={partner.id} delay={i * 0.06} distance={16}>
-                <div title={partner.fullName} className="group flex items-center gap-2.5">
-                  <span className="flex size-8 items-center justify-center rounded-full border border-white/20 text-[9px] font-extrabold text-white/60">
-                    {partner.dot}
-                  </span>
-                  <span className="text-lg font-extrabold tracking-[0.03em] text-white/70 transition-colors group-hover:text-gold-light">
-                    {partner.abbr}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
+          <div className="mt-10">
+            <PartnersGrid partners={partners} tone="dark" />
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+        <SectionHeader eyebrow="Отблизо" title="Моменти от дейността на БАПЗГ" />
+        <div className="mt-10">
+          <Gallery images={galleryImages} layout="masonry" />
+        </div>
+      </section>
+
+      <section className="bg-white py-16">
+        <div className="mx-auto max-w-[var(--container-width)] px-6">
+          <SectionHeader eyebrow="Видео" title="Опознайте БАПЗГ" align="center" />
+          <div className="mx-auto mt-10 max-w-3xl">
+            <VideoSection
+              poster="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop"
+              title="Опознайте БАПЗГ"
+            />
           </div>
         </div>
       </section>
