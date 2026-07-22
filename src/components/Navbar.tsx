@@ -62,20 +62,20 @@ export default function Navbar() {
           : "border-transparent bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-4 px-6 py-[17px]">
+      <div className="flex shell items-center justify-between gap-4 py-[17px]">
         <Link href="/" className="flex items-start gap-3.5" aria-label="БАПЗГ — начало">
           <Image src="/БАПЗГ_logo.png" alt="" width={645} height={743} priority className="h-[58px] w-auto shrink-0" />
           <span className="leading-none">
             <span className="font-display block text-lg font-bold leading-none tracking-[0.04em] text-white">
               БАПЗГ
             </span>
-            <span className="mt-1 hidden max-w-[122px] text-[9.5px] leading-tight text-white/60 min-[1101px]:block">
+            <span className="mt-1 hidden max-w-[122px] text-[9.5px] leading-tight text-white/60 min-[1220px]:block">
               Българска асоциация на професионалистите по здравни грижи
             </span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 min-[1101px]:flex" aria-label="Основна навигация">
+        <nav className="hidden items-center gap-0.5 min-[1220px]:flex" aria-label="Основна навигация">
           {navLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -99,7 +99,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-2 min-[1101px]:flex">
+        <div className="hidden items-center gap-2 min-[1220px]:flex">
           <button
             aria-label="Търсене"
             className="flex h-9 w-9 items-center justify-center rounded-full text-white/75 transition hover:scale-[1.03] hover:bg-white/10 hover:text-white active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light focus-visible:ring-offset-2 focus-visible:ring-offset-wine"
@@ -121,7 +121,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="flex h-9 w-9 items-center justify-center rounded-full text-white/75 transition hover:scale-[1.05] hover:bg-white/10 hover:text-white active:scale-[0.95] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light focus-visible:ring-offset-2 focus-visible:ring-offset-wine min-[1101px]:hidden"
+          className="flex h-9 w-9 items-center justify-center rounded-full text-white/75 transition hover:scale-[1.05] hover:bg-white/10 hover:text-white active:scale-[0.95] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-light focus-visible:ring-offset-2 focus-visible:ring-offset-wine min-[1220px]:hidden"
           aria-label={menuOpen ? "Затвори менюто" : "Отвори менюто"}
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((v) => !v)}
@@ -141,7 +141,7 @@ export default function Navbar() {
               visible: { opacity: 1, y: 0, transition: { duration: 0.25, ease: "easeOut", staggerChildren: 0.05 } },
             }}
             aria-label="Мобилна навигация"
-            className="border-t border-white/10 bg-wine/96 px-6 pb-6 pt-3 backdrop-blur-[14px] min-[1101px]:hidden"
+            className="border-t border-white/10 bg-wine/96 px-6 pb-6 pt-3 backdrop-blur-[14px] min-[1220px]:hidden"
           >
             {navLinks.map((link) => {
               const active = isActive(link.href);

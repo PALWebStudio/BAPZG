@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Compass, FileEdit, MessagesSquare } from "lucide-react";
 import InternalPageHero from "@/components/shared/InternalPageHero";
 import SectionHeader from "@/components/shared/SectionHeader";
-import FeatureCard from "@/components/shared/FeatureCard";
+import FeatureBanner from "@/components/shared/FeatureBanner";
 import QuoteSlider from "@/components/shared/QuoteSlider";
 import VideoSection from "@/components/shared/VideoSection";
 import Gallery from "@/components/shared/Gallery";
@@ -51,7 +51,7 @@ export default function KarieriPage() {
         image="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1200&auto=format&fit=crop"
       />
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <SectionHeader eyebrow="Обяви" title="Актуални позиции" description="Филтрирайте по специалност, град и тип заетост." />
         <div className="mt-8">
           <KarieriBrowser />
@@ -59,7 +59,7 @@ export default function KarieriPage() {
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <SectionHeader eyebrow="Работодатели" title="Лечебни заведения, публикували позиции" />
           <Reveal className="mt-8 flex flex-wrap gap-3">
             {employers.map((employer) => (
@@ -74,44 +74,49 @@ export default function KarieriPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Съвети" title="Насоки за кариерно развитие" align="center" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-3">
-          <FeatureCard icon={<FileEdit size={22} strokeWidth={1.75} />} title="Изгответе силно CV" description="Подчертайте квалификация, сертификати и практически опит." />
-          <FeatureCard icon={<MessagesSquare size={22} strokeWidth={1.75} />} title="Подгответе се за интервю" description="Прегледайте типични въпроси за здравни специалисти." />
-          <FeatureCard icon={<Compass size={22} strokeWidth={1.75} />} title="Планирайте развитието си" description="Използвайте обученията на БАПЗГ за нови компетенции." />
-        </div>
-      </section>
+      <FeatureBanner
+        image="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop"
+        eyebrow="Съвети"
+        statement="Три стъпки, които доближават всеки специалист до следващата роля в кариерата му."
+        items={[
+          { icon: <FileEdit size={22} strokeWidth={1.75} />, title: "Изгответе силно CV", description: "Подчертайте квалификация, сертификати и практически опит." },
+          { icon: <MessagesSquare size={22} strokeWidth={1.75} />, title: "Подгответе се за интервю", description: "Прегледайте типични въпроси за здравни специалисти." },
+          { icon: <Compass size={22} strokeWidth={1.75} />, title: "Планирайте развитието си", description: "Използвайте обученията на БАПЗГ за нови компетенции." },
+        ]}
+      />
 
       <section className="bg-wine-deep py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
-          <SectionHeader eyebrow="Отзиви" title="Истории на работодатели" align="center" />
+        <div className="shell">
+          <SectionHeader eyebrow="Отзиви" title="Истории на работодатели" align="center" tone="dark" />
           <div className="mt-10 rounded-[var(--radius-lg)] bg-white/[0.04] py-10">
             <QuoteSlider quotes={employerStories} />
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Видео" title="Кариера в здравните грижи" align="center" />
-        <div className="mx-auto mt-10 max-w-3xl">
-          <VideoSection
-            poster="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1200&auto=format&fit=crop"
-            title="Кариера в здравните грижи"
-          />
-        </div>
-      </section>
-
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
-          <SectionHeader eyebrow="Галерия" title="Работна среда" align="center" />
-          <div className="mt-10">
-            <Gallery images={galleryImages} layout="grid" />
+        <div className="shell grid gap-10 lg:grid-cols-[0.58fr_0.42fr] lg:items-center lg:gap-14">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">Видео</span>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-ink sm:text-3xl">Кариера в здравните грижи</h2>
+            <div className="mt-6">
+              <VideoSection
+                poster="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1200&auto=format&fit=crop"
+                title="Кариера в здравните грижи"
+              />
+            </div>
           </div>
+          <Reveal direction="left">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">Галерия</span>
+            <h3 className="font-display mt-3 text-xl font-semibold text-ink">Работна среда</h3>
+            <div className="mt-6">
+              <Gallery images={galleryImages} layout="grid" />
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <SectionHeader eyebrow="Въпроси" title="Често задавани въпроси" />
         <div className="mt-8 max-w-3xl">
           <FAQAccordion items={careerFaqs} />

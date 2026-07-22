@@ -23,8 +23,6 @@
   --shadow-card: 0 10px 28px rgba(43, 6, 11, 0.08);
   --shadow-soft: 0 18px 40px rgba(43, 6, 11, 0.14);
 
-  /* Layout */
-  --container-width: 1200px;
 }
 
 @theme inline {
@@ -72,6 +70,24 @@
   }
 }
 
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 32s linear infinite;
+}
+
+.marquee-track:hover,
+.marquee-track:focus-within {
+  animation-play-state: paused;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -84,6 +100,43 @@ body {
 
 .font-display {
   font-family: var(--font-display), serif;
+}
+
+/*
+ * Global page shell — replaces the old fixed 1200px container.
+ * Full-bleed width with responsive gutters (16/24/32/48/64px) instead of
+ * a narrow centered box. One utility, used everywhere a section previously
+ * capped itself at --container-width.
+ */
+.shell {
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    padding-inline: 2rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .shell {
+    padding-inline: 3rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .shell {
+    padding-inline: 4rem;
+  }
 }
 
 ::selection {

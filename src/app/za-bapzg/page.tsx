@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Users2, ShieldCheck, HeartHandshake } from "lucide-react";
+import { Users2, ShieldCheck } from "lucide-react";
 import InternalPageHero from "@/components/shared/InternalPageHero";
 import SectionIntro from "@/components/shared/SectionIntro";
 import SectionHeader from "@/components/shared/SectionHeader";
-import FeatureCard from "@/components/shared/FeatureCard";
+import FeatureBanner from "@/components/shared/FeatureBanner";
 import QuoteBlock from "@/components/shared/QuoteBlock";
 import Timeline from "@/components/shared/Timeline";
-import LeadershipCards from "@/components/shared/LeadershipCards";
-import RegionalCards from "@/components/shared/RegionalCards";
+import LeadershipCard from "@/components/shared/LeadershipCard";
+import RegionCard from "@/components/shared/RegionCard";
+import Carousel from "@/components/shared/Carousel";
 import PartnersGrid from "@/components/shared/PartnersGrid";
 import Gallery from "@/components/shared/Gallery";
 import VideoSection from "@/components/shared/VideoSection";
@@ -62,10 +63,10 @@ export default function ZaBapzgPage() {
         title="За БАПЗГ"
         subtitle="Обединяваме, защитаваме и развиваме над 50 000 професионалисти по здравни грижи в България."
         breadcrumbs={[{ label: "Начало", href: "/" }, { label: "За БАПЗГ" }]}
-        image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop"
+        image="/images/zabapzg.JPG"
       />
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <SectionIntro
           eyebrow="Представяне"
           title="Национално представителна организация на здравните специалисти"
@@ -83,28 +84,25 @@ export default function ZaBapzgPage() {
         </SectionIntro>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-4">
-        <SectionHeader eyebrow="Основа" title="Мисия, визия и ценности" align="center" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard
-            icon={<HeartHandshake size={22} strokeWidth={1.75} />}
-            title="Мисия"
-            description="Да обединяваме, защитаваме и развиваме професионалистите по здравни грижи в България."
-          />
-          <FeatureCard
-            icon={<ShieldCheck size={22} strokeWidth={1.75} />}
-            title="Визия"
-            description="Здравни грижи с високо качество, признание и достойни условия на труд за всеки специалист."
-          />
-          <FeatureCard
-            icon={<Users2 size={22} strokeWidth={1.75} />}
-            title="Ценности"
-            description="Професионализъм, солидарност, почтеност и грижа за общността от специалисти."
-          />
-        </div>
-      </section>
+      <FeatureBanner
+        image="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1600&auto=format&fit=crop"
+        eyebrow="Основа"
+        statement="Да обединяваме, защитаваме и развиваме професионалистите по здравни грижи в България."
+        items={[
+          {
+            icon: <ShieldCheck size={22} strokeWidth={1.75} />,
+            title: "Визия",
+            description: "Здравни грижи с високо качество, признание и достойни условия на труд за всеки специалист.",
+          },
+          {
+            icon: <Users2 size={22} strokeWidth={1.75} />,
+            title: "Ценности",
+            description: "Професионализъм, солидарност, почтеност и грижа за общността от специалисти.",
+          },
+        ]}
+      />
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <QuoteBlock
           quote="Заедно можем повече. Заедно сме бъдещето на здравните грижи в България."
           author="БАПЗГ"
@@ -113,7 +111,7 @@ export default function ZaBapzgPage() {
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <SectionHeader eyebrow="История" title="Основни етапи в развитието на асоциацията" />
           <div className="mt-10 max-w-3xl">
             <Timeline items={timelineItems} />
@@ -121,32 +119,41 @@ export default function ZaBapzgPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader
-          eyebrow="Ръководство"
-          title="Управителен съвет"
-          description="Примерни данни — имената ще бъдат заменени с официалния състав на ръководството."
-        />
-        <div className="mt-10">
-          <LeadershipCards members={leadership} />
+      <section className="shell py-16">
+        <div className="grid gap-8 lg:grid-cols-[0.3fr_0.7fr] lg:gap-12">
+          <Reveal>
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">Ръководство</span>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-ink sm:text-3xl">Управителен съвет</h2>
+            <p className="mt-4 text-[14.5px] leading-relaxed text-muted/65">
+              Примерни данни — имената ще бъдат заменени с официалния състав на ръководството.
+            </p>
+          </Reveal>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {leadership.map((member) => (
+              <LeadershipCard key={member.name} {...member} />
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <SectionHeader
             eyebrow="Структура"
             title="Регионална структура"
             description="БАПЗГ работи чрез мрежа от регионални колегии в цялата страна."
           />
           <div className="mt-10">
-            <RegionalCards regions={regions.slice(0, 8)} />
+            <Carousel
+              ariaLabel="Регионални колегии"
+              items={regions.map((region) => <RegionCard key={region.city} {...region} />)}
+            />
           </div>
         </div>
       </section>
 
       <section className="bg-wine-deep py-16 text-white">
-        <div className="mx-auto max-w-[var(--container-width)] px-6 text-center">
+        <div className="shell text-center">
           <Reveal>
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-light">
               Международно сътрудничество
@@ -161,7 +168,7 @@ export default function ZaBapzgPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <SectionHeader eyebrow="Отблизо" title="Моменти от дейността на БАПЗГ" />
         <div className="mt-10">
           <Gallery images={galleryImages} layout="masonry" />
@@ -169,14 +176,19 @@ export default function ZaBapzgPage() {
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
-          <SectionHeader eyebrow="Видео" title="Опознайте БАПЗГ" align="center" />
-          <div className="mx-auto mt-10 max-w-3xl">
-            <VideoSection
-              poster="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop"
-              title="Опознайте БАПЗГ"
-            />
-          </div>
+        <div className="shell grid gap-10 lg:grid-cols-[0.62fr_0.38fr] lg:items-center lg:gap-14">
+          <VideoSection
+            poster="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1200&auto=format&fit=crop"
+            title="Опознайте БАПЗГ"
+          />
+          <Reveal direction="left">
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">Видео</span>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-ink sm:text-3xl">Опознайте БАПЗГ</h2>
+            <p className="mt-4 text-[14.5px] leading-relaxed text-muted/65">
+              Кратък поглед зад кулисите на асоциацията — хората, събитията и ежедневната работа в защита на
+              специалистите по здравни грижи.
+            </p>
+          </Reveal>
         </div>
       </section>
 

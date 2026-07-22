@@ -158,7 +158,7 @@ export default function HeroWithNews() {
       id="home"
       className="relative isolate overflow-hidden bg-wine text-white lg:min-h-[840px]"
     >
-      {/* Cinematic background with slow Ken Burns zoom */}
+      {/* Cinematic background video with slow Ken Burns zoom */}
       <div className="absolute inset-0 -z-30">
         <motion.div
           className="absolute inset-0"
@@ -170,13 +170,15 @@ export default function HeroWithNews() {
               : { duration: 26, repeat: Infinity, ease: "easeInOut" }
           }
         >
-          <Image
-            src="/images/hero/hero-nurse.webp"
-            alt="Професионалист по здравни грижи"
-            fill
-            priority
-            className="object-cover object-[62%_center]"
-            sizes="100vw"
+          <video
+            src="/hero-video2.mp4"
+            poster="/images/hero/hero-nurse.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            className="absolute inset-0 h-full w-full object-cover object-[62%_center]"
           />
         </motion.div>
       </div>
@@ -209,7 +211,7 @@ export default function HeroWithNews() {
         </div>
       )}
 
-      <div className="mx-auto flex max-w-[var(--container-width)] items-center px-6 pb-20 pt-24 lg:min-h-[680px] lg:px-12 lg:pt-28">
+      <div className="flex shell items-center pb-20 pt-24 lg:min-h-[680px] lg:pt-28">
         <div className="grid w-full items-center gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(280px,0.55fr)] xl:gap-20">
           {/* Left hero content */}
           <motion.div
@@ -219,17 +221,17 @@ export default function HeroWithNews() {
               hidden: {},
               visible: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
             }}
-            className="max-w-4xl"
+            className="max-w-3xl"
           >
             <motion.p
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="mb-6 text-xs font-semibold uppercase tracking-[0.34em] text-gold-light sm:text-sm"
+              className="mb-5 text-[0.7rem] font-semibold uppercase tracking-[0.3em] text-gold-light sm:text-[0.8rem]"
             >
               Професионалисти. Грижа. Бъдеще.
             </motion.p>
 
-            <h1 className="font-display text-[clamp(2.85rem,5.6vw,6.3rem)] font-medium leading-[0.98] tracking-[-0.04em]">
+            <h1 className="font-display text-[clamp(2.15rem,4.1vw,4.7rem)] font-medium leading-[0.98] tracking-[-0.04em]">
               <motion.span
                 variants={{ hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
                 transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
@@ -249,7 +251,7 @@ export default function HeroWithNews() {
             <motion.p
               variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-8 max-w-2xl text-base leading-8 text-white/76 sm:text-lg"
+              className="mt-7 max-w-xl text-[0.9rem] leading-7 text-white/76 sm:text-base"
             >
               БАПЗГ обединява, защитава и развива над 50 000 професионалисти по
               здравни грижи в България.
@@ -407,7 +409,7 @@ export default function HeroWithNews() {
 
     {/* Overlapping statistics — rendered outside the hero's overflow-hidden box so the
         overlap isn't clipped, using the same negative-margin technique as before */}
-    <div className="relative z-10 mx-auto -mt-[56px] max-w-[var(--container-width)] px-5">
+    <div className="relative z-10 shell -mt-[56px]">
       <div className="grid overflow-hidden rounded-[var(--radius-lg)] border border-white/10 bg-wine-deep/95 shadow-[0_30px_70px_rgba(43,6,11,0.34)] backdrop-blur-xl sm:grid-cols-2 lg:grid-cols-5">
         {stats.map(({ target, suffix, label, icon: Icon }, index) => (
           <div
@@ -421,7 +423,7 @@ export default function HeroWithNews() {
               aria-hidden="true"
             />
             <div>
-              <strong className="font-display block text-2xl font-semibold">
+              <strong className="font-display block text-2xl font-semibold text-white">
                 <AnimatedStatValue target={target} suffix={suffix} />
               </strong>
               <span className="mt-1.5 block text-xs leading-5 text-white/58">{label}</span>

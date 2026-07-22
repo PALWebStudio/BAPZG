@@ -3,11 +3,12 @@ import { Mail } from "lucide-react";
 import InternalPageHero from "@/components/shared/InternalPageHero";
 import SectionHeader from "@/components/shared/SectionHeader";
 import FeaturedArticle from "@/components/shared/FeaturedArticle";
-import NewsCard from "@/components/shared/NewsCard";
+import NewsHeadlineList from "@/components/shared/NewsHeadlineList";
 import NewsCarousel from "@/components/shared/NewsCarousel";
 import CTASection from "@/components/shared/CTASection";
-import NewsGrid from "@/components/novini/NewsGrid";
+import NewsFeed from "@/components/novini/NewsFeed";
 import NewsletterForm from "@/components/shared/NewsletterForm";
+import StickySidebar from "@/components/shared/StickySidebar";
 import Reveal from "@/components/shared/Reveal";
 import { newsArticles } from "@/data/news";
 
@@ -18,63 +19,59 @@ export const metadata: Metadata = {
 
 const featured = newsArticles.find((a) => a.featured) ?? newsArticles[0];
 const rest = newsArticles.filter((a) => a.slug !== featured.slug);
-const interviews = newsArticles.filter((a) => a.isInterview);
-const popular = newsArticles.slice(0, 3);
+const headlines = rest.slice(0, 5);
+const trending = [...rest].reverse().slice(0, 5);
+const eventsRubric = newsArticles.filter((a) => a.rubric === "Събития");
 
 export default function NoviniPage() {
   return (
     <>
       <InternalPageHero
-        eyebrow="Актуално"
+        eyebrow="Новинарска платформа на БАПЗГ"
         title="Новини и събития"
-        subtitle="Следете последните новини, позиции и инициативи на БАПЗГ."
+        subtitle="Актуално, млада смяна, здравеопазване у нас и по света — на едно място."
         breadcrumbs={[{ label: "Начало", href: "/" }, { label: "Новини" }]}
-        image="https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=1200&auto=format&fit=crop"
+        image="/images/conference.jpg"
       />
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Водеща новина" title="Препоръчано" />
-        <div className="mt-8">
-          <FeaturedArticle article={featured} />
+      <section className="shell py-16">
+        <div className="grid gap-10 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <FeaturedArticle article={featured} />
+          </div>
+          <Reveal direction="left">
+            <NewsHeadlineList articles={headlines} title="Още от деня" />
+          </Reveal>
         </div>
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
-          <SectionHeader eyebrow="Най-ново" title="Последни новини" />
-          <div className="mt-8">
-            <NewsCarousel articles={rest.slice(0, 6)} />
+        <div className="shell">
+          <SectionHeader eyebrow="Рубрики" title="Всички публикации" description="Филтрирайте по рубрика и по регион." />
+          <div className="mt-8 grid gap-10 lg:grid-cols-3">
+            <div className="lg:col-span-2">
+              <NewsFeed articles={rest} />
+            </div>
+            <StickySidebar>
+              <div className="rounded-[var(--radius-md)] border border-black/[0.06] bg-cream p-5">
+                <NewsHeadlineList articles={trending} title="Най-четени" />
+              </div>
+            </StickySidebar>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Категории" title="Всички публикации" description="Филтрирайте новините по категория." />
-        <div className="mt-8">
-          <NewsGrid articles={rest} />
-        </div>
-      </section>
-
-      {interviews.length > 0 && (
-        <section className="bg-white py-16">
-          <div className="mx-auto max-w-[var(--container-width)] px-6">
-            <SectionHeader eyebrow="Разговори" title="Интервюта" />
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {interviews.map((article) => <NewsCard key={article.slug} article={article} />)}
-            </div>
+      {eventsRubric.length > 0 && (
+        <section className="shell py-16">
+          <SectionHeader eyebrow="Рубрика" title="Събития" description="Конгреси, уебинари и срещи от календара на БАПЗГ." />
+          <div className="mt-8">
+            <NewsCarousel articles={eventsRubric} />
           </div>
         </section>
       )}
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Препоръчано четиво" title="Популярни статии" />
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {popular.map((article) => <NewsCard key={article.slug} article={article} />)}
-        </div>
-      </section>
-
       <section className="bg-wine-deep py-16 text-white">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <Reveal className="mx-auto max-w-xl text-center">
             <Mail size={26} className="mx-auto text-gold" strokeWidth={1.6} />
             <h2 className="font-display mt-4 text-2xl font-semibold sm:text-3xl">Абонирайте се за новини</h2>

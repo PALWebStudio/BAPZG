@@ -33,7 +33,7 @@ export default async function CourseDetailPage({ params }: Props) {
         <div className="absolute inset-0 -z-10">
           <Image src={course.image} alt="" fill className="object-cover opacity-25" sizes="100vw" />
         </div>
-        <div className="mx-auto max-w-[var(--container-width)]">
+        <div className="shell">
           <Breadcrumbs
             items={[
               { label: "Начало", href: "/" },
@@ -48,7 +48,7 @@ export default async function CourseDetailPage({ params }: Props) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-14">
+      <section className="shell py-14">
         <div className="grid gap-12 lg:grid-cols-[1fr_320px]">
           <div className="max-w-2xl space-y-8">
             <p className="text-[15px] leading-relaxed text-muted/70">{course.description}</p>

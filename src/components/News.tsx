@@ -7,7 +7,7 @@ import { IconArrowRight } from "./icons";
 
 export default function News() {
   return (
-    <section id="news" className="mx-auto max-w-[var(--container-width)] px-6 py-10">
+    <section id="news" className="shell py-10">
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}

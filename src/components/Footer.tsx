@@ -51,7 +51,7 @@ const socialButtonClass =
 export default function Footer() {
   return (
     <footer id="contact" className="bg-wine-deep pt-[60px] text-white/65">
-      <div className="mx-auto max-w-[var(--container-width)] px-6">
+      <div className="shell">
         <motion.div
           initial="hidden"
           whileInView="visible"

@@ -26,10 +26,15 @@ export default function NewsCard({ article }: { article: NewsArticle }) {
             sizes="(max-width: 1024px) 100vw, 33vw"
             className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
+          {article.isInterview && (
+            <span className="absolute left-3 top-3 rounded-full bg-wine-deep/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold-light backdrop-blur-sm">
+              Интервю
+            </span>
+          )}
         </div>
         <div className="p-5">
           <span className="text-[11px] font-semibold uppercase tracking-wider text-burgundy">
-            {article.category}
+            {article.rubric}
           </span>
           <h3 className="font-display mt-1.5 line-clamp-2 text-[15px] font-semibold leading-snug text-ink">
             {article.title}

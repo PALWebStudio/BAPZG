@@ -15,7 +15,7 @@ type Props = {
 
 export default function CTASection({ title, subtitle, primaryCta, secondaryCta }: Props) {
   return (
-    <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+    <section className="shell py-16">
       <motion.div
         initial={{ opacity: 0, y: 28, scale: 0.98 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}

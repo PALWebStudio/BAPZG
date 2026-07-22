@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { ShieldCheck, GraduationCap, HeartHandshake, Users2, FileText, ClipboardCheck, Send, BadgeCheck } from "lucide-react";
 import InternalPageHero from "@/components/shared/InternalPageHero";
 import SectionHeader from "@/components/shared/SectionHeader";
-import FeatureCard from "@/components/shared/FeatureCard";
+import SectionIntro from "@/components/shared/SectionIntro";
+import ImageBanner from "@/components/shared/ImageBanner";
 import InfoCard from "@/components/shared/InfoCard";
 import MembershipPlanCard from "@/components/shared/MembershipPlanCard";
 import FAQAccordion from "@/components/shared/FAQAccordion";
@@ -12,6 +13,13 @@ import CTASection from "@/components/shared/CTASection";
 import Reveal from "@/components/shared/Reveal";
 import { membershipFaqs } from "@/data/faqs";
 import { newsArticles } from "@/data/news";
+
+const benefits = [
+  { icon: ShieldCheck, title: "Правна защита", description: "Професионална и правна подкрепа при трудови и етични въпроси." },
+  { icon: GraduationCap, title: "Продължаващо обучение", description: "Достъп до курсове, уебинари и конференции за професионално развитие." },
+  { icon: Users2, title: "Общност", description: "Свързаност с над 50 000 колеги от цялата страна." },
+  { icon: HeartHandshake, title: "Представителство", description: "Застъпничество пред институции по въпроси на професията." },
+];
 
 export const metadata: Metadata = {
   title: "Членство — БАПЗГ",
@@ -36,23 +44,32 @@ export default function ChlenstvoPage() {
         image="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop"
       />
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Защо да се присъедините" title="Ползи от членството" align="center" />
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <FeatureCard icon={<ShieldCheck size={22} strokeWidth={1.75} />} title="Правна защита" description="Професионална и правна подкрепа при трудови и етични въпроси." />
-          <FeatureCard icon={<GraduationCap size={22} strokeWidth={1.75} />} title="Продължаващо обучение" description="Достъп до курсове, уебинари и конференции за професионално развитие." />
-          <FeatureCard icon={<Users2 size={22} strokeWidth={1.75} />} title="Общност" description="Свързаност с над 50 000 колеги от цялата страна." />
-          <FeatureCard icon={<HeartHandshake size={22} strokeWidth={1.75} />} title="Представителство" description="Застъпничество пред институции по въпроси на професията." />
+      <section className="shell py-16">
+        <div className="grid gap-8 lg:grid-cols-[0.32fr_0.68fr] lg:gap-12">
+          <Reveal>
+            <span className="text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">Защо да се присъедините</span>
+            <h2 className="font-display mt-3 text-2xl font-semibold text-ink sm:text-3xl">Ползи от членството</h2>
+          </Reveal>
+          <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+            {benefits.map((b, i) => (
+              <Reveal key={b.title} delay={i * 0.08} className="border-l-2 border-gold/50 pl-5">
+                <b.icon size={22} className="text-burgundy" strokeWidth={1.75} />
+                <h3 className="font-display mt-3 text-base font-semibold text-ink">{b.title}</h3>
+                <p className="mt-1.5 text-[13.5px] leading-relaxed text-muted/65">{b.description}</p>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
-          <SectionHeader
+        <div className="shell">
+          <SectionIntro
             eyebrow="Изисквания"
             title="Кой може да стане член"
-          />
-          <div className="mt-8 max-w-3xl">
+            image="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000&auto=format&fit=crop"
+            reverse
+          >
             <InfoCard
               title="Право на членство"
               items={[
@@ -62,11 +79,11 @@ export default function ChlenstvoPage() {
                 "Студенти в акредитирани програми по здравни грижи (студентско членство)",
               ]}
             />
-          </div>
+          </SectionIntro>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <QuoteBlock
           quote="Членството в БАПЗГ ми даде достъп до обучения и общност от колеги, каквато не бих намерила другаде."
           author="Медицинска сестра, член на БАПЗГ"
@@ -74,40 +91,53 @@ export default function ChlenstvoPage() {
         />
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Варианти" title="Видове членство" align="center" />
-        <div className="mt-10 grid gap-6 lg:grid-cols-3">
-          <MembershipPlanCard
-            name="Редовно членство"
-            priceNote="Примерна информация — годишен членски внос"
-            description="За практикуващи специалисти по здравни грижи с призната квалификация."
-            features={["Пълен достъп до обучения", "Правна и професионална защита", "Право на глас в регионалната колегия"]}
-            ctaHref="/kontakti"
-          />
-          <MembershipPlanCard
-            name="Студентско членство"
-            priceNote="Примерна информация — намален членски внос"
-            description="За студенти в специалности по здравни грижи."
-            features={["Достъп до събития и обучения", "Менторска подкрепа", "Преференциални такси при завършване"]}
-            featured
-            ctaHref="/kontakti"
-          />
-          <MembershipPlanCard
-            name="Почетно членство"
-            priceNote="По решение на Управителния съвет"
-            description="За специалисти с изключителен принос към професията."
-            features={["Признание за заслуги", "Покана за ключови събития на БАПЗГ"]}
-            ctaHref="/kontakti"
-          />
+      <section className="bg-white py-16">
+        <div className="shell">
+          <SectionHeader eyebrow="Варианти" title="Видове членство" align="center" />
+          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+            <MembershipPlanCard
+              name="Редовно членство"
+              priceNote="Примерна информация — годишен членски внос"
+              description="За практикуващи специалисти по здравни грижи с призната квалификация."
+              features={["Пълен достъп до обучения", "Правна и професионална защита", "Право на глас в регионалната колегия"]}
+              ctaHref="/kontakti"
+            />
+            <MembershipPlanCard
+              name="Студентско членство"
+              priceNote="Примерна информация — намален членски внос"
+              description="За студенти в специалности по здравни грижи."
+              features={["Достъп до събития и обучения", "Менторска подкрепа", "Преференциални такси при завършване"]}
+              featured
+              ctaHref="/kontakti"
+            />
+            <MembershipPlanCard
+              name="Почетно членство"
+              priceNote="По решение на Управителния съвет"
+              description="За специалисти с изключителен принос към професията."
+              features={["Признание за заслуги", "Покана за ключови събития на БАПЗГ"]}
+              ctaHref="/kontakti"
+            />
+          </div>
         </div>
       </section>
 
+      <section className="shell py-16">
+        <ImageBanner
+          image="https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=1400&auto=format&fit=crop"
+          eyebrow="Присъединете се днес"
+          title="Всеки специалист заслужава силна професионална общност зад гърба си"
+          subtitle="Кандидатствайте за членство онлайн — процесът отнема само няколко минути."
+          cta={{ label: "Кандидатствай сега", href: "/kontakti" }}
+        />
+      </section>
+
       <section className="bg-wine-deep py-16 text-white">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <SectionHeader
             eyebrow="Процес"
             title="Кандидатстване в 4 стъпки"
             align="center"
+            tone="dark"
           />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
@@ -124,7 +154,7 @@ export default function ChlenstvoPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <div className="grid gap-10 lg:grid-cols-2">
           <InfoCard
             title="Необходими документи"
@@ -143,7 +173,7 @@ export default function ChlenstvoPage() {
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <SectionHeader eyebrow="Въпроси" title="Често задавани въпроси" />
           <div className="mt-8 max-w-3xl">
             <FAQAccordion items={membershipFaqs} />
@@ -151,7 +181,7 @@ export default function ChlenstvoPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <RelatedArticles articles={newsArticles.slice(0, 3)} title="Свързано за членовете" />
       </section>
 

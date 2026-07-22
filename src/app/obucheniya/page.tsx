@@ -11,6 +11,7 @@ import CourseGrid from "@/components/obucheniya/CourseGrid";
 import VideoSection from "@/components/shared/VideoSection";
 import Gallery from "@/components/shared/Gallery";
 import PartnersGrid from "@/components/shared/PartnersGrid";
+import Carousel from "@/components/shared/Carousel";
 import Reveal from "@/components/shared/Reveal";
 import { courses } from "@/data/courses";
 import { partners } from "@/lib/data";
@@ -45,7 +46,7 @@ export default function ObucheniyaPage() {
         image="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format&fit=crop"
       />
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <SectionHeader eyebrow="Препоръчано" title="Водещо събитие" />
         <Reveal className="mt-8" delay={0.1}>
           <Link
@@ -75,7 +76,7 @@ export default function ObucheniyaPage() {
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <SectionHeader eyebrow="График" title="Календар на обученията" description="Хронологичен преглед на всички предстоящи дати." />
           <div className="mt-8 space-y-3">
             {courses.map((c, i) => (
@@ -103,7 +104,7 @@ export default function ObucheniyaPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
+      <section className="shell py-16">
         <SectionHeader eyebrow="Каталог" title="Предстоящи курсове" description="Филтрирайте по категория." />
         <div className="mt-8">
           <CourseGrid courses={upcomingCourses} />
@@ -111,23 +112,67 @@ export default function ObucheniyaPage() {
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <SectionHeader eyebrow="Онлайн" title="Уебинари" />
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {webinars.map((c) => <CourseCard key={c.slug} course={c} />)}
+          <div className="mt-8">
+            <Carousel ariaLabel="Уебинари" items={webinars.map((c) => <CourseCard key={c.slug} course={c} />)} />
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Мащабни събития" title="Конференции" />
-        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {conferences.map((c) => <CourseCard key={c.slug} course={c} />)}
-        </div>
-      </section>
+      {conferences.length > 0 && (
+        <section className="shell py-16">
+          <SectionHeader eyebrow="Мащабни събития" title="Конференции" />
+          <div className="mt-8 grid gap-8 lg:grid-cols-[0.55fr_0.45fr] lg:items-center">
+            <Link
+              href={`/obucheniya/${conferences[0].slug}`}
+              className="group relative block aspect-[4/3] overflow-hidden rounded-[var(--radius-lg)] shadow-[var(--shadow-card)]"
+            >
+              <Image
+                src={conferences[0].image}
+                alt=""
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-wine-deep/85 via-wine-deep/10 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-gold-light">{conferences[0].type}</span>
+                <h3 className="font-display mt-2 text-xl font-semibold leading-snug">{conferences[0].title}</h3>
+              </div>
+            </Link>
+            <div className="space-y-3">
+              {conferences.slice(1).map((c, i) => (
+                <Reveal key={c.slug} delay={i * 0.08}>
+                  <Link
+                    href={`/obucheniya/${c.slug}`}
+                    className="group flex items-center gap-4 rounded-[var(--radius-md)] border border-black/[0.06] bg-cream p-4 transition-all hover:-translate-y-0.5 hover:shadow-[var(--shadow-card)]"
+                  >
+                    <div className="relative h-16 w-24 shrink-0 overflow-hidden rounded-[var(--radius-sm)]">
+                      <Image src={c.image} alt="" fill className="object-cover" sizes="96px" />
+                    </div>
+                    <div className="min-w-0">
+                      <span className="text-[10.5px] font-semibold uppercase tracking-wider text-gold">{c.date}</span>
+                      <h4 className="mt-0.5 line-clamp-2 text-[14px] font-semibold leading-snug text-ink group-hover:text-burgundy">
+                        {c.title}
+                      </h4>
+                    </div>
+                    <ArrowRight size={15} className="ml-auto shrink-0 text-burgundy transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Reveal>
+              ))}
+              {conferences.length === 1 && (
+                <p className="text-[13.5px] leading-relaxed text-muted/55">
+                  Още конференции предстои да бъдат обявени — следете тази страница за актуализации.
+                </p>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <div className="grid gap-10 lg:grid-cols-2">
             <InfoCard
               title="Кредитни точки и сертификати"
@@ -142,18 +187,23 @@ export default function ObucheniyaPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[var(--container-width)] px-6 py-16">
-        <SectionHeader eyebrow="Видео" title="Симулационно обучение в действие" align="center" />
-        <div className="mx-auto mt-10 max-w-3xl">
-          <VideoSection
-            poster="https://images.unsplash.com/photo-1587556930799-8dca6fad6d41?q=80&w=1200&auto=format&fit=crop"
-            title="Симулационно обучение в действие"
-          />
-        </div>
+      <section className="shell py-16 grid gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:items-center lg:gap-14">
+        <Reveal>
+          <span className="text-xs font-semibold uppercase tracking-[0.14em] text-burgundy">Видео</span>
+          <h2 className="font-display mt-3 text-2xl font-semibold text-ink sm:text-3xl">Симулационно обучение в действие</h2>
+          <p className="mt-4 text-[14.5px] leading-relaxed text-muted/65">
+            Практическите ни курсове разчитат на симулационно обучение, за да подготвят специалистите за реални
+            клинични ситуации в безопасна среда.
+          </p>
+        </Reveal>
+        <VideoSection
+          poster="https://images.unsplash.com/photo-1587556930799-8dca6fad6d41?q=80&w=1200&auto=format&fit=crop"
+          title="Симулационно обучение в действие"
+        />
       </section>
 
       <section className="bg-white py-16">
-        <div className="mx-auto max-w-[var(--container-width)] px-6">
+        <div className="shell">
           <SectionHeader eyebrow="Отблизо" title="Моменти от нашите обучения" align="center" />
           <div className="mt-10">
             <Gallery images={galleryImages} layout="masonry" />
@@ -162,7 +212,7 @@ export default function ObucheniyaPage() {
       </section>
 
       <section className="bg-wine-deep py-16 text-white">
-        <div className="mx-auto max-w-[var(--container-width)] px-6 text-center">
+        <div className="shell text-center">
           <Reveal>
             <span className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-light">
               Партньорства

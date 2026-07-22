@@ -14,18 +14,18 @@ export default function VideoStory() {
       className="relative flex min-h-[380px] overflow-hidden rounded-2xl shadow-[0_18px_44px_rgba(43,6,11,.25)]"
       style={{
         backgroundImage:
-          "linear-gradient(rgba(43,6,11,0), rgba(43,6,11,0)), url('https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=1400&auto=format&fit=crop')",
+          "linear-gradient(rgba(43,6,11,0), rgba(43,6,11,0)), url('/homepagephoto.png')",
         backgroundPosition: "65% center",
         backgroundSize: "cover",
         backgroundColor: "var(--color-wine)",
       }}
     >
-      <div className="absolute inset-0 bg-wine/45" style={{ mixBlendMode: "multiply" }} />
+      <div className="absolute inset-0 bg-wine/30" style={{ mixBlendMode: "multiply" }} />
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, rgba(43,6,11,.95), rgba(43,6,11,.6) 55%, rgba(43,6,11,.2))",
+            "linear-gradient(90deg, rgba(43,6,11,.75), rgba(43,6,11,.42) 55%, rgba(43,6,11,.1))",
         }}
       />
 

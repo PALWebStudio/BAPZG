@@ -26,10 +26,13 @@ export default function FeaturedArticle({ article }: { article: NewsArticle }) {
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
+          <span className="absolute left-4 top-4 rounded-full bg-wine-deep/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-gold-light backdrop-blur-sm">
+            {article.region}
+          </span>
         </div>
         <div className="flex flex-col justify-center p-8 sm:p-10">
           <span className="w-fit rounded-full bg-burgundy/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-burgundy">
-            {article.category}
+            {article.rubric}
           </span>
           <h3 className="font-display mt-4 text-2xl font-semibold leading-snug text-ink">{article.title}</h3>
           <p className="mt-3 text-[14.5px] leading-relaxed text-muted/65">{article.excerpt}</p>

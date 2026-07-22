@@ -17,11 +17,11 @@ export default function QuoteSlider({ quotes }: { quotes: QuoteSlide[] }) {
       items={quotes.map((q) => (
         <div key={q.author} className="mx-auto max-w-2xl px-4 text-center">
           <Quote size={32} className="mx-auto text-gold/70" aria-hidden="true" />
-          <p className="font-display mt-5 text-xl font-medium leading-relaxed text-ink sm:text-2xl">
+          <p className="font-display mt-5 text-xl font-medium leading-relaxed text-white sm:text-2xl">
             „{q.quote}“
           </p>
-          <p className="mt-5 text-sm font-semibold text-burgundy">{q.author}</p>
-          <p className="mt-0.5 text-xs text-muted/55">{q.role}</p>
+          <p className="mt-5 text-sm font-semibold text-gold-light">{q.author}</p>
+          <p className="mt-0.5 text-xs text-white/60">{q.role}</p>
         </div>
       ))}
     />

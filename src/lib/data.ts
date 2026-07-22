@@ -9,6 +9,7 @@ export const navLinks: NavLink[] = [
   { label: "Членство", href: "/chlenstvo" },
   { label: "Кариери", href: "/karieri" },
   { label: "Обучения", href: "/obucheniya" },
+  { label: "Събития", href: "/sabitiya" },
   { label: "Новини", href: "/novini" },
   { label: "Библиотека", href: "/biblioteka" },
   { label: "Контакти", href: "/kontakti" },
@@ -27,63 +28,6 @@ export const stats: Stat[] = [
   { id: "international", value: 4, suffix: "", label: "международни членства" },
   { id: "trainings", value: 300, suffix: "+", label: "обучения годишно" },
   { id: "partners", value: 100, suffix: "+", label: "партньори" },
-];
-
-export type QuickAccessCard = {
-  id: string;
-  title: string;
-  description: string;
-  href: string;
-  image: string;
-  icon: "briefcase" | "graduation" | "users" | "book" | "newspaper";
-};
-
-export const quickAccessCards: QuickAccessCard[] = [
-  {
-    id: "careers",
-    title: "Кариери",
-    description: "Намери своята следваща възможност",
-    href: "/karieri",
-    image:
-      "https://images.unsplash.com/photo-1584982751601-97dcc096659c?q=80&w=900&auto=format&fit=crop",
-    icon: "briefcase",
-  },
-  {
-    id: "trainings",
-    title: "Обучения",
-    description: "Курсове, събития и сертификати",
-    href: "/obucheniya",
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=900&auto=format&fit=crop",
-    icon: "graduation",
-  },
-  {
-    id: "membership",
-    title: "Членство",
-    description: "Ползи, подкрепа и общност",
-    href: "/chlenstvo",
-    image:
-      "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=900&auto=format&fit=crop",
-    icon: "users",
-  },
-  {
-    id: "library",
-    title: "Библиотека",
-    description: "Наредби, документи и ресурси",
-    href: "/biblioteka",
-    image:
-      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=900&auto=format&fit=crop",
-    icon: "book",
-  },
-  {
-    id: "news",
-    title: "Новини",
-    description: "Актуална информация и събития",
-    href: "/novini",
-    image:
-      "https://images.unsplash.com/photo-1504439468489-c8920d796a29?q=80&w=900&auto=format&fit=crop",
-    icon: "newspaper",
-  },
 ];
 
 export type EventItem = {
@@ -138,8 +82,7 @@ export const news: NewsItem[] = [
     id: "news-1",
     title: "Международен ден на медицинската сестра 2024",
     date: "12 май 2024",
-    image:
-      "https://images.unsplash.com/photo-1582750433449-648ed127bb54?q=80&w=900&auto=format&fit=crop",
+    image: "/images/conference.jpg",
     excerpt: "Отбелязваме приноса на над 50 000 медицински сестри в България.",
   },
   {
@@ -165,6 +108,8 @@ export type Partner = {
   dot: string;
   abbr: string;
   fullName: string;
+  /** Path under /public to the real logo, e.g. "/images/partners/icn.svg". Falls back to the dot+abbr badge when omitted. */
+  logo?: string;
 };
 
 export const partners: Partner[] = [
@@ -191,6 +136,27 @@ export const partners: Partner[] = [
     dot: "C",
     abbr: "CIE",
     fullName: "CIE — международна организация",
+  },
+  {
+    id: "medboard",
+    dot: "M",
+    abbr: "MB",
+    fullName: "Medical Board",
+    logo: "/images/partners/medboard-logo.svg",
+  },
+  {
+    id: "mzdrave",
+    dot: "МЗ",
+    abbr: "МЗ",
+    fullName: "Министерство на здравеопазването",
+    logo: "/images/partners/ministerstvo-zdraveopazvane-logo.webp",
+  },
+  {
+    id: "mu-sofia",
+    dot: "МУ",
+    abbr: "МУ София",
+    fullName: "Медицински университет — София",
+    logo: "/images/partners/mu-sofia-logo.png",
   },
 ];
 

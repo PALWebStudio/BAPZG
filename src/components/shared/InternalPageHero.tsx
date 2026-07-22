@@ -46,7 +46,7 @@ export default function InternalPageHero({ eyebrow, title, subtitle, breadcrumbs
         initial="hidden"
         animate="visible"
         variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } } }}
-        className="relative z-10 mx-auto max-w-[var(--container-width)] px-6 pb-16 pt-32 lg:pt-36"
+        className="relative z-10 shell pb-16 pt-32 lg:pt-36"
       >
         <motion.div variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.6, ease: EASE }}>
           <Breadcrumbs items={breadcrumbs} />
