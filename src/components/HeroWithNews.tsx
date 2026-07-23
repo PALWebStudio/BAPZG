@@ -183,8 +183,10 @@ export default function HeroWithNews() {
         </motion.div>
       </div>
 
-      {/* Burgundy and dark overlays */}
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(43,6,11,0.98)_0%,rgba(67,6,16,0.92)_32%,rgba(107,16,32,0.42)_66%,rgba(43,6,11,0.38)_100%)]" />
+      {/* Burgundy and dark overlays — a lighter top-to-bottom wash on mobile keeps the
+          video visible behind the stacked single-column content; the stronger left-heavy
+          horizontal gradient (built for the two-column split) only applies from lg up. */}
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(43,6,11,0.66)_0%,rgba(43,6,11,0.4)_45%,rgba(43,6,11,0.72)_100%)] lg:bg-[linear-gradient(90deg,rgba(43,6,11,0.98)_0%,rgba(67,6,16,0.92)_32%,rgba(107,16,32,0.42)_66%,rgba(43,6,11,0.38)_100%)]" />
       <div className="absolute inset-0 -z-20 bg-[linear-gradient(180deg,rgba(43,6,11,0.52)_0%,transparent_32%,rgba(43,6,11,0.78)_100%)]" />
 
       {/* Subtle decorative light */}
