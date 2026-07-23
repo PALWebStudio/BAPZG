@@ -49,7 +49,7 @@ export default function NoviniPage() {
         <div className="shell">
           <SectionHeader eyebrow="Рубрики" title="Всички публикации" description="Филтрирайте по рубрика и по регион." />
           <div className="mt-8 grid gap-10 lg:grid-cols-3">
-            <div className="lg:col-span-2">
+            <div className="min-w-0 lg:col-span-2">
               <NewsFeed articles={rest} />
             </div>
             <StickySidebar>

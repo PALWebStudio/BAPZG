@@ -78,7 +78,7 @@ export default async function NewsDetailPage({ params }: Props) {
               <Link href="/novini" className="text-sm font-semibold text-burgundy hover:text-burgundy-light">
                 ← Всички новини
               </Link>
-              <ShareButtons />
+              <ShareButtons title={article.title} />
             </div>
           </div>
 

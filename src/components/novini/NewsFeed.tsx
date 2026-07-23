@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { LayoutGrid, Flame, GraduationCap, Tv, HeartPulse, Globe2, CalendarDays } from "lucide-react";
+import { LayoutGrid, Flame, Award, GraduationCap, Tv, HeartPulse, Globe2, CalendarDays } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import FilterBar from "@/components/shared/FilterBar";
 import NewsCard from "@/components/shared/NewsCard";
@@ -15,6 +15,7 @@ const PAGE_SIZE = 6;
 
 const rubricIcons: Record<Rubric, LucideIcon> = {
   "Актуално": Flame,
+  "Герои": Award,
   "Млада смяна": GraduationCap,
   "Медиите за нас": Tv,
   "Новини от здравеопазването": HeartPulse,

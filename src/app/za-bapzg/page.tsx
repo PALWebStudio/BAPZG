@@ -8,7 +8,6 @@ import QuoteBlock from "@/components/shared/QuoteBlock";
 import Timeline from "@/components/shared/Timeline";
 import LeadershipCard from "@/components/shared/LeadershipCard";
 import RegionCard from "@/components/shared/RegionCard";
-import Carousel from "@/components/shared/Carousel";
 import PartnersGrid from "@/components/shared/PartnersGrid";
 import Gallery from "@/components/shared/Gallery";
 import VideoSection from "@/components/shared/VideoSection";
@@ -143,11 +142,10 @@ export default function ZaBapzgPage() {
             title="Регионална структура"
             description="БАПЗГ работи чрез мрежа от регионални колегии в цялата страна."
           />
-          <div className="mt-10">
-            <Carousel
-              ariaLabel="Регионални колегии"
-              items={regions.map((region) => <RegionCard key={region.city} {...region} />)}
-            />
+          <div className="mt-10 grid gap-5 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+            {regions.map((region) => (
+              <RegionCard key={region.city} {...region} />
+            ))}
           </div>
         </div>
       </section>

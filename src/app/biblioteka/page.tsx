@@ -6,6 +6,7 @@ import VideoSection from "@/components/shared/VideoSection";
 import ImageBanner from "@/components/shared/ImageBanner";
 import CTASection from "@/components/shared/CTASection";
 import LibraryBrowser from "@/components/biblioteka/LibraryBrowser";
+import PublicationsSection from "@/components/biblioteka/PublicationsSection";
 import Reveal from "@/components/shared/Reveal";
 import { documents } from "@/data/documents";
 
@@ -27,6 +28,8 @@ export default function BibliotekaPage() {
         breadcrumbs={[{ label: "Начало", href: "/" }, { label: "Библиотека" }]}
         image="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1200&auto=format&fit=crop"
       />
+
+      <PublicationsSection />
 
       <section className="bg-white py-16">
         <div className="shell grid gap-8 lg:grid-cols-[0.3fr_0.7fr] lg:gap-12">

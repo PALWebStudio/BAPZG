@@ -47,7 +47,7 @@ export default function FAQAccordion({ items }: { items: FAQ[] }) {
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                   className="overflow-hidden"
                 >
-                  <div className="px-6 pb-5 text-[14px] leading-relaxed text-muted/65">{item.answer}</div>
+                  <div className="whitespace-pre-line px-6 pb-5 text-[14px] leading-relaxed text-muted/65">{item.answer}</div>
                 </motion.div>
               )}
             </AnimatePresence>

@@ -6,6 +6,7 @@ export type Profession = {
   description: string;
   responsibilities: string[];
   gallery: { src: string; alt: string }[];
+  opportunities: { title: string; description: string }[];
 };
 
 export const professions: Profession[] = [
@@ -13,7 +14,7 @@ export const professions: Profession[] = [
     slug: "medicinska-sestra",
     title: "Медицинска сестра",
     quote: "До пациента във всеки важен момент.",
-    image: "https://images.unsplash.com/photo-1691139601099-932c01ec198b?q=80&w=1200&auto=format&fit=crop",
+    image: "/images/zabapzg.JPG",
     description:
       "Медицинските сестри са в основата на здравната система — грижат се за пациентите денонощно, наблюдават състоянието им и подкрепят лекарския екип във всеки етап на лечението.",
     responsibilities: [
@@ -23,10 +24,16 @@ export const professions: Profession[] = [
       "Координация с лекари и друг медицински персонал",
     ],
     gallery: [
-      { src: "https://images.unsplash.com/photo-1691139601099-932c01ec198b?q=80&w=900&auto=format&fit=crop", alt: "Медицинска сестра с пациент" },
+      { src: "/images/zabapzg.JPG", alt: "Медицинска сестра с пациент" },
       { src: "https://images.unsplash.com/photo-1587556930799-8dca6fad6d41?q=80&w=900&auto=format&fit=crop", alt: "Практическо обучение" },
       { src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=900&auto=format&fit=crop", alt: "Екипна работа" },
       { src: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?q=80&w=900&auto=format&fit=crop", alt: "Обсъждане на случай" },
+    ],
+    opportunities: [
+      { title: "Болнични отделения и спешна помощ", description: "Работа в стационарни отделения, интензивно лечение или спешен прием." },
+      { title: "Домашни и патронажни грижи", description: "Индивидуални грижи за пациенти в домашна среда." },
+      { title: "Ръководна позиция", description: "Развитие до старша медицинска сестра или ръководител на екип." },
+      { title: "Реализация в чужбина", description: "Признати квалификации, отворени за практика в чужди държави." },
     ],
   },
   {
@@ -48,6 +55,12 @@ export const professions: Profession[] = [
       { src: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=900&auto=format&fit=crop", alt: "Работна среща" },
       { src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=900&auto=format&fit=crop", alt: "Професионалист по здравни грижи" },
     ],
+    opportunities: [
+      { title: "Родилни отделения", description: "Работа в родилни домове и отделения по акушерство и гинекология." },
+      { title: "Женски консултации", description: "Проследяване на бременност и пренатални грижи в извънболнична помощ." },
+      { title: "Частна практика", description: "Самостоятелна акушерска практика и индивидуални консултации." },
+      { title: "Обучение на родители", description: "Курсове за подготовка за раждане и грижа за новороденото." },
+    ],
   },
   {
     slug: "medicinski-laborant",
@@ -67,6 +80,12 @@ export const professions: Profession[] = [
       { src: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=900&auto=format&fit=crop", alt: "Работна среща" },
       { src: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?q=80&w=900&auto=format&fit=crop", alt: "Обсъждане на резултати" },
       { src: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=900&auto=format&fit=crop", alt: "Екипна работа" },
+    ],
+    opportunities: [
+      { title: "Болнични лаборатории", description: "Работа в диагностични лаборатории на болници и клиники." },
+      { title: "Частни лаборатории", description: "Позиции в частни лабораторни центрове и мрежи." },
+      { title: "Научноизследователска дейност", description: "Участие в клинични изследвания и научни проекти." },
+      { title: "Фармацевтичен сектор", description: "Реализация във фармацевтични и биотехнологични компании." },
     ],
   },
   {
@@ -88,6 +107,12 @@ export const professions: Profession[] = [
       { src: "https://images.unsplash.com/photo-1512678080530-7760d81faba6?q=80&w=900&auto=format&fit=crop", alt: "Работна среща" },
       { src: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=900&auto=format&fit=crop", alt: "Обучение на работното място" },
     ],
+    opportunities: [
+      { title: "Образна диагностика в болници", description: "Работа в рентгенови и образни отделения на лечебни заведения." },
+      { title: "Диагностични центрове", description: "Позиции в специализирани центрове за образна диагностика." },
+      { title: "Специализация в скенер и ЯМР", description: "Развитие в по-сложни образни технологии и модалности." },
+      { title: "Скринингови програми", description: "Участие в мобилни и национални скринингови инициативи." },
+    ],
   },
   {
     slug: "rehabilitator",
@@ -107,6 +132,12 @@ export const professions: Profession[] = [
       { src: "https://images.unsplash.com/photo-1573497491208-6b1acb260507?q=80&w=900&auto=format&fit=crop", alt: "Обсъждане на случай" },
       { src: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=900&auto=format&fit=crop", alt: "Работна среща" },
       { src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=900&auto=format&fit=crop", alt: "Професионалист по здравни грижи" },
+    ],
+    opportunities: [
+      { title: "Болнична рехабилитация", description: "Следоперативно и следтравматично възстановяване в болница." },
+      { title: "Рехабилитационни центрове", description: "Работа в специализирани центрове за физикална терапия." },
+      { title: "Спортна медицина", description: "Работа с атлети и спортни отбори по превенция и възстановяване." },
+      { title: "Частна практика", description: "Самостоятелна практика и домашни визити при пациенти." },
     ],
   },
 ];

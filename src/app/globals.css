@@ -88,6 +88,17 @@
   animation-play-state: paused;
 }
 
+@keyframes btn-trace {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+/* Traveling light trace that runs along a button's own contour (no overflow). */
+.btn-trace {
+  animation: btn-trace 2.8s linear infinite;
+}
+
 html {
   scroll-behavior: smooth;
 }

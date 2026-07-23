@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, MapPin, CalendarDays } from "lucide-react";
@@ -112,6 +112,14 @@ export default function EventsCalendar({ events }: { events: EventItem[] }) {
   const [viewYear, setViewYear] = useState(() => initial?.date.getFullYear() ?? new Date().getFullYear());
   const [viewMonth, setViewMonth] = useState(() => initial?.date.getMonth() ?? new Date().getMonth());
   const [selected, setSelected] = useState<EventItem | null>(() => initial?.event ?? null);
+  const detailRef = useRef<HTMLDivElement>(null);
+
+  function handleSelect(event: EventItem) {
+    setSelected(event);
+    requestAnimationFrame(() => {
+      detailRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+  }
 
   const secondMonth = viewMonth === 11 ? 0 : viewMonth + 1;
   const secondYear = viewMonth === 11 ? viewYear + 1 : viewYear;
@@ -161,43 +169,45 @@ export default function EventsCalendar({ events }: { events: EventItem[] }) {
           month={viewMonth}
           monthEvents={eventsFor(viewYear, viewMonth)}
           selectedSlug={selected?.slug}
-          onSelect={setSelected}
+          onSelect={handleSelect}
         />
         <MonthGrid
           year={secondYear}
           month={secondMonth}
           monthEvents={eventsFor(secondYear, secondMonth)}
           selectedSlug={selected?.slug}
-          onSelect={setSelected}
+          onSelect={handleSelect}
         />
       </div>
 
-      <AnimatePresence mode="wait">
-        {selected && (
-          <motion.div
-            key={selected.slug}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.3 }}
-            className="mt-6 overflow-hidden rounded-[var(--radius-lg)] border border-black/[0.06] bg-cream shadow-[var(--shadow-card)] sm:flex sm:items-stretch"
-          >
-            <div className="relative h-40 shrink-0 sm:h-auto sm:w-64">
-              <Image src={selected.image} alt="" fill className="object-cover" sizes="256px" />
-            </div>
-            <div className="p-6">
-              <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-burgundy">
-                <CalendarDays size={12} /> {selected.date} {selected.month} {selected.year}
-              </span>
-              <h4 className="font-display mt-2 text-lg font-semibold leading-snug text-ink">{selected.title}</h4>
-              <p className="mt-2 flex items-center gap-1.5 text-[12.5px] text-muted/60">
-                <MapPin size={12} className="text-gold" /> {selected.online ? "Онлайн" : selected.location}
-              </p>
-              <p className="mt-3 max-w-2xl text-[13.5px] leading-relaxed text-muted/65">{selected.excerpt}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div ref={detailRef} className="scroll-mt-28">
+        <AnimatePresence mode="wait">
+          {selected && (
+            <motion.div
+              key={selected.slug}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.3 }}
+              className="mt-6 overflow-hidden rounded-[var(--radius-lg)] border border-black/[0.06] bg-cream shadow-[var(--shadow-card)] sm:flex sm:items-stretch"
+            >
+              <div className="relative h-40 shrink-0 sm:h-auto sm:w-64">
+                <Image src={selected.image} alt="" fill className="object-cover" sizes="256px" />
+              </div>
+              <div className="p-6">
+                <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-burgundy">
+                  <CalendarDays size={12} /> {selected.date} {selected.month} {selected.year}
+                </span>
+                <h4 className="font-display mt-2 text-lg font-semibold leading-snug text-ink">{selected.title}</h4>
+                <p className="mt-2 flex items-center gap-1.5 text-[12.5px] text-muted/60">
+                  <MapPin size={12} className="text-gold" /> {selected.online ? "Онлайн" : selected.location}
+                </p>
+                <p className="mt-3 max-w-2xl text-[13.5px] leading-relaxed text-muted/65">{selected.excerpt}</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
